@@ -22,7 +22,7 @@ Config.Animations = {
 
 	{
 		name  = 'greetings',
-		label = 'Ontmoetingen',
+		label = 'Begroetingen',
 		items = {
 	    	{label = "Hallo", type = "anim", data = {lib = "gestures@m@standing@casual", anim = "gesture_hello"}},
 	    	{label = "Zwaai", type = "anim", data = {lib = "mp_common", anim = "givetake1_a"}},
