@@ -48,23 +48,14 @@ function OpenAnimationsSubMenu(menu)
 			title = Config.Animations[i].label
 
 			for j=1, #Config.Animations[i].items, 1 do
-				if Config.Animations[i].items[j].data.index == null then
-					elements[#elements+1] = {
-						icon = "fas fa-smile",
-						title = Config.Animations[i].items[j].label,
-						type = Config.Animations[i].items[j].type,
-						value = Config.Animations[i].items[j].data
-					}
-				else
-					elements[#elements+1] = {
-						icon = "fas fa-smile",
-						title = Config.Animations[i].items[j].label .. Config.Animations[i].items[j].data.index,
-						type = Config.Animations[i].items[j].type,
-						value = Config.Animations[i].items[j].data
-					}
-
-
-				end
+				
+				elements[#elements+1] = {
+					icon = "fas fa-smile",
+					title  = Config.Animations[i].items[j].data.index and Config.Animations[i].items[j].label..Config.Animations[i].items[j].data.index or Config.Animations[i].items[j].label,
+					type = Config.Animations[i].items[j].type,
+					value = Config.Animations[i].items[j].data
+				}
+				
 			end
 			break
 		end
