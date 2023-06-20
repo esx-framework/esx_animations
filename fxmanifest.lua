@@ -6,7 +6,7 @@ description 'ESX Animations'
 lua54 'yes'
 
 version '1.1'
-legacyversion '1.9.1'
+legacyversion '1.9.4'
 
 
 client_scripts {
