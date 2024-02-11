@@ -2,12 +2,10 @@ fx_version 'adamant'
 
 game 'gta5'
 
-description 'ESX Animations'
+description 'Allows Players to play animations'
 lua54 'yes'
 
 version '1.0'
-legacyversion '1.9.1'
-
 client_scripts {
 	'@es_extended/imports.lua',
 	'config.lua',
