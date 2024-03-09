@@ -88,4 +88,4 @@ RegisterCommand('cleartasks', function()
 end, false)
 
 RegisterKeyMapping('animmenu', 'Open Animations Menu', 'keyboard', 'f3')
-RegisterKeyMapping('cleartasks', 'Stop Anmimation', 'keyboard', 'z')
+RegisterKeyMapping('cleartasks', 'Stop Animation', 'keyboard', 'z')
