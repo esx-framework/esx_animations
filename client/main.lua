@@ -89,3 +89,12 @@ end, false)
 
 RegisterKeyMapping('animmenu', 'Open Animations Menu', 'keyboard', 'f3')
 RegisterKeyMapping('cleartasks', 'Stop Animation', 'keyboard', 'z')
+
+-- Expose animations to other resources
+exports('GetConfig', function()
+    return Config
+end)
+
+exports('SetConfig', function(newConfig)
+    Config = newConfig
+end)
