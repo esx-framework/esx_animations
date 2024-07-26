@@ -1,54 +1,31 @@
-local inAnim = false
-
-function startAttitude(lib, anim)
+local function startAttitude(lib, anim)
 	ESX.Streaming.RequestAnimSet(lib, function()
-		SetPedMovementClipset(ESX.PlayerData.ped, anim, true)
+		SetPedMovementClipset(ESX.PlayerData.ped, anim, 1)
 	end)
 end
 
-function startAnim(lib, anim)
+local function startAnim(lib, anim)
 	ESX.Streaming.RequestAnimDict(lib, function()
 		TaskPlayAnim(ESX.PlayerData.ped, lib, anim, 8.0, -8.0, -1, 0, 0.0, false, false, false)
 		RemoveAnimDict(lib)
 	end)
 end
 
-function startScenario(anim)
+local function startScenario(anim)
 	TaskStartScenarioInPlace(ESX.PlayerData.ped, anim, 0, false)
 end
 
-function OpenAnimationsMenu()
-	local elements = {
-		{unselectable = true, icon = "fas fa-smile", title = "Animations"}
-	}
-
-	for i=1, #Config.Animations, 1 do
-		elements[#elements+1] = {
-			icon = "fas fa-smile",
-			title = Config.Animations[i].label,
-			value = Config.Animations[i].name
-		}
-	end
-
-	ESX.OpenContext("right", elements, function(menu,element)
-		OpenAnimationsSubMenu(element.value)
-	end)
-end
-
-function OpenAnimationsSubMenu(menu)
-	local title    = nil
+local function openAnimationsSubMenu(menu)
 	local elements = {}
 
-	for i=1, #Config.Animations, 1 do
+	for i = 1, #Config.Animations, 1 do
 		elements = {
-			{unselectable = true, icon = "fas fa-smile", title = Config.Animations[i].label}
+			{ unselectable = true, icon = "fas fa-smile", title = Config.Animations[i].label }
 		}
 
 		if Config.Animations[i].name == menu then
-			title = Config.Animations[i].label
-
-			for j=1, #Config.Animations[i].items, 1 do
-				elements[#elements+1] = {
+			for j = 1, #Config.Animations[i].items, 1 do
+				elements[#elements + 1] = {
 					icon = "fas fa-smile",
 					title = Config.Animations[i].items[j].label,
 					type = Config.Animations[i].items[j].type,
@@ -59,7 +36,7 @@ function OpenAnimationsSubMenu(menu)
 		end
 	end
 
-	ESX.OpenContext("right", elements, function(menu,element)
+	ESX.OpenContext("right", elements, function(_, element)
 		local type = element.type
 		local lib  = element.value.lib
 		local anim = element.value.anim
@@ -74,10 +51,28 @@ function OpenAnimationsSubMenu(menu)
 	end)
 end
 
+local function openAnimationsMenu()
+	local elements = {
+		{ unselectable = true, icon = "fas fa-smile", title = "Animations" }
+	}
+
+	for i = 1, #Config.Animations, 1 do
+		elements[#elements + 1] = {
+			icon = "fas fa-smile",
+			title = Config.Animations[i].label,
+			value = Config.Animations[i].name
+		}
+	end
+
+	ESX.OpenContext("right", elements, function(_, element)
+		openAnimationsSubMenu(element.value)
+	end)
+end
+
 -- Key Controls
 RegisterCommand('animmenu', function()
 	if not ESX.PlayerData.dead then
-		OpenAnimationsMenu()
+		openAnimationsMenu()
 	end
 end, false)
 

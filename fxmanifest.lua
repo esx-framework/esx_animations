@@ -1,15 +1,14 @@
 fx_version 'adamant'
-
 game 'gta5'
-
-description 'Allows Players to play animations'
 lua54 'yes'
 
+description 'Allows Players to play animations'
 version '1.0'
+
+dependency 'es_extended'
+
 client_scripts {
 	'@es_extended/imports.lua',
 	'config.lua',
 	'client/main.lua'
 }
-
-dependency 'es_extended'
